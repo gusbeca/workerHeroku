@@ -20,6 +20,8 @@ import boto3
 import pymongo
 #from pprint import pprint
 
+import ffmpy
+
 # ------INICIALIZACION DE VARIABLES-----------------------
 workerNo = '1'
 
