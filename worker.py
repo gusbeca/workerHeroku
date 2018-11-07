@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ---IMPORTACION DE LIBREIRAS----------------------
-print('probando 1 2 3 ')
+print('probando 1 2 3  probando')
 
 import time
 import datetime
