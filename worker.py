@@ -78,7 +78,7 @@ def delTemp():
 
 
 # LEER MENSAJES
-max_queue_messages = 4
+max_queue_messages = 12
 message_bodies = []
 messages_to_delete = []
 
