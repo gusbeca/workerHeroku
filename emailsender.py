@@ -1,30 +1,21 @@
-import smtplib
 import os
+import sendgrid
+from sendgrid.helpers.mail import *
+
 
 def sendemail( to_addr_list,video,concurso,pagina):
-
-    #Definiciones de Configuracion
-    from_addr = 'videoconcursos2018@gmail.com'
-
-    subject = 'Tu video  ya ha sido publicado '
-    mensaje = 'Tu video  {} ya ha sido publicado en  la pagina publica del concurso {}\n{}'.format(video,concurso,pagina)
-    login = os.environ['SMTPUSER']
-    password = os.environ['SMTPPASS']
-    smtpserver = 'email-smtp.us-east-1.amazonaws.com:587'
-    #------------------------------------------
     try:
-        message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(from_addr,to_addr_list[0],subject, mensaje)
-        server = smtplib.SMTP(smtpserver)
-        server.ehlo()
-        server.starttls()
-        server.login(login, password)
-        problems = server.sendmail(from_addr, to_addr_list, message)
-        server.quit()
+        mensaje = 'Tu video  {} ya ha sido publicado en  la pagina publica del concurso {}\n{}'.format(video,concurso,pagina)
+        sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+        from_email = Email("videoconcursos2018@gmail.com")
+        to_email = Email(to_addr_list[0])
+        subject = "Tu video  ya ha sido publicado "
+        content = Content("text/plain", mensaje)
+        mail = Mail(from_email, subject, to_email, content)
+        response = sg.client.mail.send.post(request_body=mail.get())
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
         return 1
     except:
         return -1
-
-
-#to_addr_list = ['busongeneral86@hotmail.com']
-
-#sendemail(to_addr_list,'xxx','XXX','XXX.COM')
