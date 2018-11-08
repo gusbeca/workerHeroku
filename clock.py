@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from apscheduler.schedulers.blocking import BlockingScheduler
-
+print('reloj')
 sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
