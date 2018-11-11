@@ -126,7 +126,7 @@ def workerh():
                     video = fupdate['descripcion']
                     consulta = db.vcm_concurso.find_one({'id': fupdate['concurso_id']})
                     concurso = consulta['nombre']
-                    pagina = 'vcm-LB-1702821448.us-east-1.elb.amazonaws.com' + '/participar/' + consulta['url']
+                    pagina = 'https://appvideoscontest.herokuapp.com' + '/participar/' + consulta['url']
                     sendemail(to_addr_list, video, concurso, pagina)
 
     end = time.time()
