@@ -77,7 +77,7 @@ def workerh():
 
 
     # LEER MENSAJES
-    max_queue_messages = 1
+    max_queue_messages = 5
     message_bodies = []
     messages_to_delete = []
 
